@@ -59,7 +59,7 @@ def plotLines(df: pd.DataFrame, columnX: str, columnY1: str, columnY2: str):
     ax.tick_params(axis = 'y', labelcolor = 'midnightblue')
 
     ax2 = ax.twin()
-    ax2.plot(columnX, columnY2, color = 'deepskyblue', label = columnY2)
+    ax2.plot(df[columnX], df[columnY2], color = 'deepskyblue', label = columnY2)
     ax2.set_ylabel(columnY2, color = 'deepskyblue')
 
 
