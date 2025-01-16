@@ -1,44 +1,21 @@
-version: 2.1
+version: 2.1 # CircleCI config version
 
+# Define the jobs (individual tasks that CircleCI runs)
 jobs:
-  build:
-    docker:
-      - image: circleci/python:3.9
-    steps:
-      - checkout
-      - run:
-          name: Build the project
-          command: echo "Building project..."
-
   test:
     docker:
-      - image: circleci/python:3.9
+      - image: circleci/python:3.9 # Use a Docker image with Python
     steps:
-      - checkout
+      - checkout # Checkout the repository code
       - run:
           name: Install dependencies
-          command: pip install -r requirements.txt
+          command: pip install -r requirements.txt # Install dependencies from requirements.txt
       - run:
           name: Run tests
           command: pytest tests.py
 
-  deploy:
-    docker:
-      - image: circleci/python:3.9
-    steps:
-      - checkout
-      - run:
-          name: Deploy to Production
-          command: echo "Deploying application..."
-
+# Define workflows (orchestrate the order of jobs)
 workflows:
   version: 2
-  build-test-deploy:
+  test-workflow: # Name of the workflow
     jobs:
-      - build
-      - test:
-          requires:
-            - build # Run test only after build completes
-      - deploy:
-          requires:
-            - test # Run deploy only after test completes
