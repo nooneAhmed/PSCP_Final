@@ -1,39 +1,44 @@
 version: 2.1
 
-executors:
-  python-executor:
-    docker:
-      - image: circleci/python:3.10
-    working_directory: ~/repo
-
 jobs:
-  install-dependencies:
-    executor: python-executor
+  build:
+    docker:
+      - image: circleci/python:3.9
+    steps:
+      - checkout
+      - run:
+          name: Build the project
+          command: echo "Building project..."
+
+  test:
+    docker:
+      - image: circleci/python:3.9
     steps:
       - checkout
       - run:
           name: Install dependencies
-          command: |
-            python -m venv venv
-            . venv/bin/activate
-            pip install --upgrade pip setuptools wheel
-            pip install -r requirements.txt
+          command: pip install -r requirements.txt
+      - run:
+          name: Run tests
+          command: pytest tests.py
 
-  test:
-    executor: python-executor
+  deploy:
+    docker:
+      - image: circleci/python:3.9
     steps:
       - checkout
       - run:
-          name: Run tests
-          command: |
-            . venv/bin/activate
-            pytest tests.py
+          name: Deploy to Production
+          command: echo "Deploying application..."
 
 workflows:
   version: 2
-  build:
+  build-test-deploy:
     jobs:
-      - install-dependencies
+      - build
       - test:
           requires:
-            - install-dependencies
+            - build # Run test only after build completes
+      - deploy:
+          requires:
+            - test # Run deploy only after test completes
