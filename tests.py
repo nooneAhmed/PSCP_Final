@@ -12,6 +12,25 @@ def testLoadData():
     assert isinstance(df, pd.DataFrame)
     assert len(df) == 10
 
+#Test cleanData()
+
+def testLoadData():
+    df = loadData(testData1)
+    clean_df = cleanData(df)
+
+    assert clean_df.isnull().sum().sum() == 0
+    assert len(clean_df) == 5
+
+#Test mergeData()
+
+def testMergeData():
+    df1 = cleanData(loadData(testData1))
+    df2 = cleanData(loadData(testData2))
+    df = mergeData(df1, df2, 'c1', 'c2')
+
+    assert df.shape[1] == 4
+
+
 
 
 

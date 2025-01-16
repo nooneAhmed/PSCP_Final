@@ -23,5 +23,5 @@ line2 = plotLines(ch_df, 'Year', 'GDP per capita', 'Annual CO₂ emissions (per 
 bz_df = filterData(full_df, 'Entity', 'Brazil')
 line3 = plotLines(bz_df, 'Year', 'GDP per capita', 'Annual CO₂ emissions (per capita)', 'Brazil', "C:/Users/nooni/OneDrive/Documents/Desktop/PSCP_Final-1/figures/brazil_line.png")
 
-uk_df = filterData(full_df, 'Entity', 'United Kingdom')
+uk_df = filterData(full_df, 'Entity', 'United Kingdom.')
 line4 = plotLines(uk_df, 'Year', 'GDP per capita', 'Annual CO₂ emissions (per capita)', 'United Kingdom', "C:/Users/nooni/OneDrive/Documents/Desktop/PSCP_Final-1/figures/uk_line.png")
