@@ -54,23 +54,24 @@ def plotScatter(df: pd.DataFrame, columnX: str, columnY: str, savePath: str):
 
     plt.close()
 
-def plotLines(df: pd.DataFrame, columnX: str, columnY1: str, columnY2: str, savePath: str):
+def plotLines(df: pd.DataFrame, columnX: str, columnY1: str, columnY2: str, country: str, savePath: str):
 
     """Plots a line graph with two variables against one"""
 
-    fig, ax = plt.subplot(figsize = (8, 6))
+    fig, ax = plt.subplots(figsize = (8, 6))
 
     ax.plot(df[columnX], df[columnY1], color = 'midnightblue', label = columnY1)
     ax.set_xlabel(columnX)
     ax.set_ylabel(columnY1, color = 'midnightblue')
     ax.tick_params(axis = 'y', labelcolor = 'midnightblue')
 
-    ax2 = ax.twin()
-    ax2.plot(df[columnX], df[columnY2], color = 'deepskyblue', label = columnY2)
-    ax2.set_ylabel(columnY2, color = 'deepskyblue')
+    ax2 = ax.twinx()
+    ax2.plot(df[columnX], df[columnY2], color='deepskyblue', label=columnY2)
+    ax2.set_ylabel(columnY2, color='deepskyblue')
+    ax2.tick_params(axis='y', labelcolor='deepskyblue')
 
 
-    ax.set_title(f'Line Graph: {columnY1} and {columnY2} Over Time')
+    ax.set_title(f'Line Graph: {country} {columnY1} and {columnY2} Over Time')
     ax.grid(axis = 'x', linestyle = '--')
     ax.grid(axis = 'y', linestyle = '--')
     lines1, labels1 = ax.get_legend_handles_labels()
