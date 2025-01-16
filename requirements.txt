@@ -1,5 +1,4 @@
-pytest
-numpy
-pandas
-matplotlib.pyplot
-scipy.stats
+pandas==1.5.3
+numpy==1.24.0
+matplotlib==3.7.0
+pytest==7.4.0
