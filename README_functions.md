@@ -28,7 +28,8 @@ Dataframe of csv file
 Cleans a dataframe by removing missing values
 
 **Parameters**
--df (pd.DataFrame): dataframe to clean
+
+- sdf (pd.DataFrame): dataframe to clean
 
 **Returns**
 Cleaned dataframe
@@ -40,7 +41,7 @@ Merges 2 dataframes on two columns
 **Parameters**
 
 - df1, df2 (pd.dataframes): dataframes to be merged
-  column1, column2 (str): names of columns for merging
+- column1, column2 (str): names of columns for merging
 
 **Assumptions**
 
@@ -55,25 +56,29 @@ Merged dataframe
 Filters data from a dataframe, based on a specified criteria
 
 **Parameters**
--df1 (pd.DataFrame): dataframe being filtered
--column (str): name of column being filtered
--filter (str): criteria being filtered
+
+- df1 (pd.DataFrame): dataframe being filtered
+- column (str): name of column being filtered
+- filter (str): criteria being filtered
 
 **Returns**
--df: filtered dataframe
+
+- df: filtered dataframe
 
 ### plotScatter(df: pd.DataFrame, columnX: str, columnY: str, savePath: str)
 
 Plots a scatter plot using data in a dataframe and saves the plot as a png
 
 **Parameters**
--df (pd.DataFrame): dataframe containing the data to be plotted
--columnX (str): name of column containing the data to be plotted on the x axis
--columnY (str): name of column containing data to be plotted on the y axis
--savePath (str): path where png of the plot is to be saved
+
+- df (pd.DataFrame): dataframe containing the data to be plotted
+- columnX (str): name of column containing the data to be plotted on the x axis
+- columnY (str): name of column containing data to be plotted on the y axis
+- savePath (str): path where png of the plot is to be saved
 
 **Assumptions**
--Data being plotted is in a cleaned dataframe
+
+- Data being plotted is in a cleaned dataframe
 
 - Plot is to be saved as a png
 
@@ -82,10 +87,11 @@ Plots a scatter plot using data in a dataframe and saves the plot as a png
 Runs a Spearman Correlation test on two variables in a dataframe, and returns the results
 
 **Parameters**
--df (pd.DataFrame): dataframe containing the data being tested
+
+- df (pd.DataFrame): dataframe containing the data being tested
 
 - columnX (str): name of the column containing the first variable being tested
-  -columnY (str): name of the column containing the second variable being tested
+- columnY (str): name of the column containing the second variable being tested
 
 **Returns**
 Tuple containing the Spearman coefficient and the p-value
