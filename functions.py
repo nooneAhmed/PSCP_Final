@@ -2,11 +2,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-def loadData(filepath: str) -> pd.DataFrame:
+de loadData(filepath: str) -> pd.DataFrame:
     """Loads data from csv file"""
 
     data = pd.read_csv(filepath)
     return data
+
 
 def cleanData(df: pd.DataFrame) -> pd.DataFrame:
 
