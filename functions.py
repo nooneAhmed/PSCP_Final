@@ -24,6 +24,13 @@ def mergeData(df1: pd.DataFrame, df2: pd.DataFrame, column1: str, column2: str) 
 
     return df
 
+def filterData(df: pd.DataFrame, column: str, filter: str) -> pd.DataFrame:
+    """Filters a datframe, returns the filtered dataframe"""
+
+    df1 = df[df[column] == filter]
+
+    return df1
+
 
 def plotScatter(df: pd.DataFrame, columnX: str, columnY: str, savePath: str):
 
