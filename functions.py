@@ -54,7 +54,7 @@ def plotScatter(df: pd.DataFrame, columnX: str, columnY: str, savePath: str):
 
     plt.close()
 
-def plotLines(df: pd.DataFrame, columnX: str, columnY1: str, columnY2: str):
+def plotLines(df: pd.DataFrame, columnX: str, columnY1: str, columnY2: str, savePath: str):
 
     """Plots a line graph with two variables against one"""
 
@@ -76,6 +76,12 @@ def plotLines(df: pd.DataFrame, columnX: str, columnY1: str, columnY2: str):
     lines1, labels1 = ax.get_legend_handles_labels()
     lines2, labels2 = ax2.get_legend_handles_labels()
     ax.legend(lines1 + lines2, labels1 + labels2, loc='upper right')
+
+    """Save figure"""
+
+    plt.savefig(savePath)
+
+    plt.close()
 
 
 
