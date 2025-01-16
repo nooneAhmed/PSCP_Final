@@ -1,6 +1,7 @@
 from functions import loadData, cleanData, mergeData, filterData, plotScatter, spearmanCorrelation, plotLines
 import pandas as pd
 import pytest
+import os
 
 testData1 = 'C:/Users/nooni/OneDrive/Documents/Desktop/PSCP_Final-1/testDataSample1.csv'
 testData2 = 'C:/Users/nooni/OneDrive/Documents/Desktop/PSCP_Final-1/testDataSample2.csv'
@@ -40,8 +41,9 @@ def testSpearmanCorrelation1():
     })
 
     correlation, p_value = spearmanCorrelation(df, 'ColumnX', 'ColumnY')
-    assert round(correlation, 3) == -1.000  # Expected perfect negative correlation
+    assert round(correlation, 3) == -1.000
     assert round(p_value, 3) == 0.000
+
 
 #Test plotScatter()
 
@@ -58,9 +60,13 @@ def testPlotLines():
     df = mergeData(cleanData(loadData(testData1)), cleanData(loadData(testData2)), 'c1', 'c2')
 
     try:
-        plotLines(df, 'c2', 'c3', 'c4', 'a', 'test_plot1.png')
+        plotLines(df, 'c2', 'c3', 'c4', 'Test Country', 'test_plot1.png')
     except Exception as e:
-        pytest.fail(f"plotScatter raised an error: {e}")
+        pytest.fail(f"plotLines raised an error: {e}")
+
+    assert os.path.exists('test_plot1.png'), "Plot file was not saved at test_plot1.png"
+
+
 
 
 
