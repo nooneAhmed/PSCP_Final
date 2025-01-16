@@ -14,8 +14,8 @@ jobs:
           name: Run tests
           command: pytest tests.py
 
-# Define workflows (orchestrate the order of jobs)
 workflows:
   version: 2
-  test-workflow: # Name of the workflow
+  test-workflow: # Workflow to run the tests
     jobs:
+      - test
