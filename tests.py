@@ -10,7 +10,7 @@ def testLoadData():
     df = loadData(testData1)
 
     assert isinstance(df, pd.DataFrame)
-    assert len(df) == 7
+    assert len(df) == 10
 
 
 

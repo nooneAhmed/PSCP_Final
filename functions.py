@@ -1,8 +1,6 @@
 import pandas as pd
-import seaborn as sns
 import matplotlib.pyplot as plt
-import scipy.stats as stats 
-from scipy.stats import spearmanr
+
 
 def loadData(filepath: str) -> pd.DataFrame:
     """Loads data from csv file"""
