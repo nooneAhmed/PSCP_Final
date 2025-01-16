@@ -1,6 +1,8 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import scipy.stats as stats 
+from scipy.stats import spearmanr
 
 def loadData(filepath: str) -> pd.DataFrame:
     """Loads data from csv file"""
@@ -14,6 +16,14 @@ def cleanData(df: pd.DataFrame) -> pd.DataFrame:
 
     df = df.dropna()
     return df
+
+def mergeData(df1: pd.DataFrame, df2: pd.DataFrame, column1: str, column2: str) -> pd.DataFrame:
+    """Merges 2 dataframes on 2 columns"""
+
+    df = pd.merge(df1, df2, on = [column1, column2], how = 'inner')
+
+    return df
+
 
 def plotScatter(df: pd.DataFrame, columnX: str, columnY: str, savePath: str):
 
