@@ -2,7 +2,7 @@
 
 This module creates figures and runs a spearman correlation test to analyse the relationship between GDP per capita and annual CO₂ emissions per capita. The datasets are sourced from Our World in Data and are availible in the repository
 
-The script generated:
+The script generates:
 
 - A scatter plot showing the relationship between GDP per capita and annual CO₂ emmissions per capita
 - Spearman Correaltion coefficients and p-value to quantify the relationship between the variables
