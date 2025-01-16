@@ -30,8 +30,24 @@ def testMergeData():
 
     assert df.shape[1] == 4
 
+#Test plotScatter()
 
+def testPlotScatter():
+    df = mergeData(cleanData(loadData(testData1)), cleanData(loadData(testData2)), 'c1', 'c2')
+    try:
+        plotScatter(df, 'c3', 'c4', 'test_plot.png')
+    except Exception as e:
+        pytest.fail(f"plotScatter raised an error: {e}")
 
+#Test plotLines()
+
+def testPlotLines():
+    df = mergeData(cleanData(loadData(testData1)), cleanData(loadData(testData2)), 'c1', 'c2')
+
+    try:
+        plotLines(df, 'c2', 'c3', 'c4', 'a', 'test_plot1.png')
+    except Exception as e:
+        pytest.fail(f"plotScatter raised an error: {e}")
 
 
 

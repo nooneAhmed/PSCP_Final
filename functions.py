@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-de loadData(filepath: str) -> pd.DataFrame:
+def loadData(filepath: str) -> pd.DataFrame:
     """Loads data from csv file"""
 
     data = pd.read_csv(filepath)
