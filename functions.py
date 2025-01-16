@@ -83,10 +83,3 @@ def plotLines(df: pd.DataFrame, columnX: str, columnY1: str, columnY2: str, coun
     plt.savefig(savePath)
 
     plt.close()
-
-
-
-
-
-
-
