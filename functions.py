@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from scipy.stats import spearmanr
 
 
 def loadData(filepath: str) -> pd.DataFrame:
@@ -52,6 +53,12 @@ def plotScatter(df: pd.DataFrame, columnX: str, columnY: str, savePath: str):
     plt.savefig(savePath)
 
     plt.close()
+
+def spearmanCorrelation(df: pd.DataFrame, columnX: str, columnY: str)-> tuple:
+    """Compute the Spearman correlation between two columns of a DataFrame"""
+
+    corr, p_value = spearmanr(df[columnX], df[columnY])
+    return corr, p_value
 
 def plotLines(df: pd.DataFrame, columnX: str, columnY1: str, columnY2: str, country: str, savePath: str):
 

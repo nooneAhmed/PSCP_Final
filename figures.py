@@ -1,4 +1,4 @@
-from functions import loadData, cleanData, mergeData, filterData, plotScatter, plotLines
+from functions import loadData, cleanData, mergeData, filterData, plotScatter, spearmanCorrelation, plotLines
 import pandas as pd
 
 gdp_df = loadData(r"C:/Users/nooni/OneDrive/Documents/Desktop/PSCP_Final-1/gdp-per-capita-worldbank.csv")
@@ -13,6 +13,9 @@ full_df = mergeData(gdp_df, co_df, 'Entity', 'Year')
 #print(full_df.head())
 
 scatter = plotScatter(full_df, 'GDP per capita', 'Annual CO₂ emissions (per capita)', "C:/Users/nooni/OneDrive/Documents/Desktop/PSCP_Final-1/figures/scatter_plot.png")
+
+corr, p_value = spearmanCorrelation(full_df, 'Annual CO₂ emissions (per capita)', 'GDP per capita')
+print(f"Spearman correlation: {corr}, P-value: {p_value:.10f}")
 
 us_df = filterData(full_df, 'Entity', 'United States')
 line1 = plotLines(us_df, 'Year', 'GDP per capita', 'Annual CO₂ emissions (per capita)', 'United States', "C:/Users/nooni/OneDrive/Documents/Desktop/PSCP_Final-1/figures/us_line.png")
