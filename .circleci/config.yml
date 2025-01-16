@@ -12,7 +12,7 @@ jobs:
           command: pip install -r requirements.txt # Install dependencies from requirements.txt
       - run:
           name: Run tests
-          command: pytest tests.py
+          command: pytest
 
 # Define workflows (orchestrate the order of jobs)
 workflows:
