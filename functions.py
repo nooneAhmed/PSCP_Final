@@ -30,7 +30,7 @@ def plotScatter(df: pd.DataFrame, columnX: str, columnY: str, savePath: str):
     """Plot two columns of a dataframe into a scatter graph"""
 
     plt.figure(figsize = (8, 6))
-    plt.scatter(columnX, columnY, color = 'blue', alpha = 0.6)
+    plt.scatter(df[columnX], df[columnY], color = 'blue', alpha = 0.6)
 
     """Labels, grid and title"""
 
@@ -53,7 +53,7 @@ def plotLines(df: pd.DataFrame, columnX: str, columnY1: str, columnY2: str):
 
     fig, ax = plt.subplot(figsize = (8, 6))
 
-    ax.plot(columnX, columnY1, color = 'midnightblue', label = columnY1)
+    ax.plot(df[columnX], df[columnY1], color = 'midnightblue', label = columnY1)
     ax.set_xlabel(columnX)
     ax.set_ylabel(columnY1, color = 'midnightblue')
     ax.tick_params(axis = 'y', labelcolor = 'midnightblue')
