@@ -1,73 +1,88 @@
 from functions import loadData, cleanData, mergeData, filterData, plotScatter, spearmanCorrelation, plotLines
 import pandas as pd
 import pytest
+import unittest
 import os
+from io import BytesIO
 
-testData1 = 'C:/Users/nooni/OneDrive/Documents/Desktop/PSCP_Final-1/testDataSample1.csv'
-testData2 = 'C:/Users/nooni/OneDrive/Documents/Desktop/PSCP_Final-1/testDataSample2.csv'
+class RunTests(unittest.TestCase):
 
-#Test loadData()
+    @classmethod
+    
+    def setUpClass(cls):
+        """Set up test data for all tests."""
+        cls.testData1 = 'C:/Users/nooni/OneDrive/Documents/Desktop/PSCP_Final-1/testDataSample1.csv'
+        cls.testData2 = 'C:/Users/nooni/OneDrive/Documents/Desktop/PSCP_Final-1/testDataSample2.csv'
 
-def testLoadData():
-    df = loadData(testData1)
+    #Test loadData()
 
-    assert isinstance(df, pd.DataFrame)
-    assert len(df) == 10
+    def testLoadData(self):
+        df = loadData(self.testData1)
 
-#Test cleanData()
-
-def testLoadData():
-    df = loadData(testData1)
-    clean_df = cleanData(df)
-
-    assert clean_df.isnull().sum().sum() == 0
-    assert len(clean_df) == 5
-
-#Test mergeData()
-
-def testMergeData():
-    df1 = cleanData(loadData(testData1))
-    df2 = cleanData(loadData(testData2))
-    df = mergeData(df1, df2, 'c1', 'c2')
-
-    assert df.shape[1] == 4
-
-#Test spearmanCorrelation1()
-
-def testSpearmanCorrelation1():
-    df = pd.DataFrame({
-        'ColumnX': [1, 2, 3, 4, 5],
-        'ColumnY': [5, 4, 3, 2, 1] 
-    })
-
-    correlation, p_value = spearmanCorrelation(df, 'ColumnX', 'ColumnY')
-    assert round(correlation, 3) == -1.000
-    assert round(p_value, 3) == 0.000
+     
+        self.assertIsInstance(df, pd.DataFrame, "loadData should return a DataFrame.")
+        self.assertGreater(len(df), 0, "The DataFrame should not be empty.")
+        self.assertIn("c1", df.columns, "Expected column 'c1' in the DataFrame.")
 
 
-#Test plotScatter()
+    #Test cleanData()
 
-def testPlotScatter():
-    df = mergeData(cleanData(loadData(testData1)), cleanData(loadData(testData2)), 'c1', 'c2')
-    try:
-        plotScatter(df, 'c3', 'c4', 'test_plot.png')
-    except Exception as e:
-        pytest.fail(f"plotScatter raised an error: {e}")
+    def testCleanData(self):
+        df = loadData(self.testData1)
+        clean_df = cleanData(df)
 
-#Test plotLines()
+        self.assertEqual(clean_df.isnull().sum().sum(), 0, "There should be no missing values after cleaning.")
+        self.assertEqual(len(clean_df), 5, "The cleaned DataFrame should have 5 rows.")
 
-def testPlotLines():
-    df = mergeData(cleanData(loadData(testData1)), cleanData(loadData(testData2)), 'c1', 'c2')
 
-    try:
-        plotLines(df, 'c2', 'c3', 'c4', 'Test Country', 'test_plot1.png')
-    except Exception as e:
-        pytest.fail(f"plotLines raised an error: {e}")
+    #Test mergeData()
 
-    assert os.path.exists('test_plot1.png'), "Plot file was not saved at test_plot1.png"
+    def testMergeData(self):
+        df1 = cleanData(loadData(self.testData1))
+        df2 = cleanData(loadData(self.testData2))
+        df = mergeData(df1, df2, 'c1', 'c2')
+
+        self.assertEqual(df.shape[1], 4, "The merged DataFrame should have 4 columns.")
+
+
+    #Test spearmanCorrelation1()
+
+    def testSpearmanCorrelation1(self):
+        df = pd.DataFrame({
+            'ColumnX': [1, 2, 3, 4, 5],
+            'ColumnY': [5, 4, 3, 2, 1] 
+        })
+
+        correlation, p_value = spearmanCorrelation(df, 'ColumnX', 'ColumnY')
+        self.assertEqual(round(correlation, 3), -1.000, "Spearman correlation should be -1.000")
+        self.assertEqual(round(p_value, 3), 0.000, "P-value should be 0.000")
 
 
 
+    #Test plotScatter()
+
+    def testPlotScatter(self):
+        df = mergeData(cleanData(loadData(self.testData1)), cleanData(loadData(self.testData2)), 'c1', 'c2')
+        try:
+            plotScatter(df, 'c3', 'c4', 'test_plot.png')
+        except Exception as e:
+            pytest.fail(f"plotScatter raised an error: {e}")
+
+    #Test plotLines()
+
+    def testPlotLines(self):
+        df = mergeData(cleanData(loadData(self.testData1)), cleanData(loadData(self.testData2)), 'c1', 'c2')
+
+        try:
+            plotLines(df, 'c2', 'c3', 'c4', 'Test Country', 'test_plot1.png')
+        except Exception as e:
+            self.fail(f"plotScatter raised an error: {e}")
+
+        self.assertTrue(os.path.exists('test_plot.png'), "The plot file 'test_plot.png' was not created.")
+
+
+if __name__ == "__main__":
+    unittest.main()
 
 
 
