@@ -11,8 +11,8 @@ class RunTests(unittest.TestCase):
     
     def setUpClass(cls):
         """Set up test data for all tests."""
-        cls.testData1 = 'C:/Users/nooni/OneDrive/Documents/Desktop/PSCP_Final-1/testDataSample1.csv'
-        cls.testData2 = 'C:/Users/nooni/OneDrive/Documents/Desktop/PSCP_Final-1/testDataSample2.csv'
+        cls.testData1 = 'data/testDataSample1.csv'
+        cls.testData2 = 'data/testDataSample2.csv'
 
     #Test loadData()
 

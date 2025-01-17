@@ -1,11 +1,11 @@
 from functions import loadData, cleanData, mergeData, filterData, plotScatter, spearmanCorrelation, plotLines
 import pandas as pd
 
-gdp_df = loadData(r"C:/Users/nooni/OneDrive/Documents/Desktop/PSCP_Final-1/gdp-per-capita-worldbank.csv")
+gdp_df = loadData(r"data/gdp-per-capita-worldbank.csv")
 gdp_df = cleanData(gdp_df)
 #print(gdp_df.head())
 
-co_df = loadData(r"C:/Users/nooni/OneDrive/Documents/Desktop/PSCP_Final-1/per-capita-co-emissions.csv")
+co_df = loadData(r"data/per-capita-co-emissions.csv")
 co_df = cleanData(co_df)
 #print(co_df.head())
 
